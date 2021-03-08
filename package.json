@@ -1,0 +1,41 @@
+{
+  "name": "codegen-5655-repro",
+  "version": "1.0.0",
+  "type": "module",
+  "private": "true",
+  "description": "",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "npm-watch",
+    "codegen": "set -a; . .env; graphql-codegen",
+    "server": "node ./src/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "watch": {
+    "codegen": {
+      "patterns": [ "codegen.yml", "src/requests" ],
+      "extensions": "graphql"
+    },
+    "server": {
+      "patterns": [ "src" ],
+      "extensions": "js"
+    }
+  },
+  "author": "Matthew Scharley <matt@scharley.me>",
+  "license": "MIT",
+  "dependencies": {
+    "@graphql-codegen/cli": "^1.21.2",
+    "@graphql-codegen/typescript": "^1.21.1",
+    "@graphql-codegen/typescript-graphql-request": "^3.1.0",
+    "@graphql-codegen/typescript-operations": "^1.17.15",
+    "@graphql-codegen/typescript-resolvers": "^1.19.0",
+    "graphql": "^15.5.0"
+  },
+  "devDependencies": {
+    "@types/dotenv": "^8.2.0",
+    "@types/express": "^4.17.11",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "npm-watch": "^0.7.0"
+  }
+}
