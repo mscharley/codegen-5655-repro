@@ -27,7 +27,10 @@ app.use(express.json());
 
 app.use((req, res, next) => {
   if (req.headers['api-key'] == null) {
-    done(new Error("Invalid request"));
+    next(new Error("Invalid request"));
+  }
+  if (req.headers['api-key'] !== apiKey) {
+    next(new Error("Wrong API key"));
   }
   next();
 });
@@ -41,7 +44,7 @@ app.use("/graphql", (req, res, next) => {
 app.use((err, req, res, next) => {
   if (err) {
     res.status(400);
-    res.send("Invalid request");
+    res.send(err.message);
     next();
   }
 });
